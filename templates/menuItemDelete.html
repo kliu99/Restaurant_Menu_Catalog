@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h4>Delete menu item: {{menuItem.name}}?</h4>
+
+<form method="post" class="form-horizontal">
+	<div class="form-group">
+		<div class="col-xs-2">
+				<button type="submit" class="btn btn-default">Confirm</button>
+				<button type="submit" class="btn btn-default" form="form_back">Back</button>
+		</div>
+	</div>
+</form>
+<form action="{{url_for('restaurantMenu', restaurant_id=restaurant.key().id())}}" id="form_back">
+</form>
+
+{% endblock %}

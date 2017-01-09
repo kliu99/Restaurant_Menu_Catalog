@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="post" class="form-horizontal">
+	<div class="form-group">
+		<div class="col-xs-6 text-center">
+			<h4>Update {{menuItem.name}}</h4>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="name" class="col-xs-2 control-label">Name</label>
+		<div class="col-xs-4">
+			<input type="text" name="name" placeholder="{{menuItem.name}}" class="form-control" maxlength="80">	
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="description" class="col-xs-2 control-label">Description</label>
+		<div class="col-xs-4">
+			<textarea name="description" rows="3" placeholder="{{menuItem.description}}" class="form-control" maxlength="250"></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="price" class="col-xs-2 control-label">Price</label>
+		<div class="col-xs-4">
+			<div class="input-group">
+				<span class="input-group-addon">$</span>
+				<input type="text" name="price" placeholder="{{menuItem.price}}" class="form-control" maxlength="8">	
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="course" class="col-xs-2 control-label">Course</label>
+		<div class="col-xs-4">
+			<select class="form-control" name="course">
+				{% if menuItem.course == "Appetizer" %}
+			  		<option value="Appetizer" selected>Appetizer</option>
+			  	{% else %}
+			  		<option value="Appetizer">Appetizer</option>
+			  	{% endif %}
+
+			  	{% if menuItem.course == "Entree" %}
+			  		<option value="Entree" selected>Entree</option>
+			  	{% else %}
+			  		<option value="Entree">Entree</option>
+			  	{% endif %}
+
+			  	{% if menuItem.course == "Dessert" %}
+			  		<option value="Dessert" selected>Dessert</option>
+			  	{% else %}
+			  		<option value="Dessert">Dessert</option>
+			  	{% endif %}
+
+			  	{% if menuItem.course == "Beverage" %}
+			  		<option value="Beverage" selected>Beverage</option>
+			  	{% else %}
+			  		<option value="Beverage">Beverage</option>
+			  	{% endif %}
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-xs-2 control-label">Restaurant</label>
+		<div class="col-xs-4">
+			<p class="form-control-static">{{restaurant.name}}</p>
+		</div>
+	</div>
+	<!-- Buttons -->
+	<div class="form-group">
+		<div class="col-xs-6 text-right">
+			<button type="submit" class="btn btn-default">Update</button>
+			<button type="submit" class="btn btn-default" form="form_back">Cancel</button>
+		</div>
+	</div>
+</form>
+<form action="{{url_for('restaurantMenu', restaurant_id=restaurant.key().id())}}" id="form_back">
+</form>
+
+{% endblock %}
